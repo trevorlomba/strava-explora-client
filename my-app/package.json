@@ -1,6 +1,6 @@
 {
   "name": "my-app",
-  "homepage": "https://trevorlomba.github.io/strava-reporta",
+  "homepage": "https://trevorlomba.github.io/strava-explora-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
