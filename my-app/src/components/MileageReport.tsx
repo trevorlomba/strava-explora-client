@@ -98,19 +98,24 @@ function MileageReport() {
 		most_recent_run_today: false
 	})
 
+	const [imageUrl, setImageUrl] = useState<string>('');
 
 	useEffect(() => {
+		// Fetch the data from the API endpoint
 		fetch(`${process.env.REACT_APP_BACKEND_URL}/api/mileage-report`)
-			.then((response) => {
-				if (response.ok) {
-					return response.json()
-				}
-				throw new Error('Failed to fetch data')
-			})
-			.then((data) => setData(data))
-			.then(() => setFetchedData(data))
-			.catch((error) => console.error('Error fetching data:', error))
+		.then((response) => {
+			if (response.ok) {
+			return response.json()
+			}
+			throw new Error('Failed to fetch data')
+		})
+		.then((data) => {
+			setData(data);
+			setImageUrl(`${process.env.REACT_APP_BACKEND_URL}/images/${data.moving_time_by_day_plot}`);
+		})
+		.catch((error) => console.error('Error fetching data:', error))
 	}, [])
+ 
 
 	useEffect(() => {
 		setMilesGoal(data.next_week_goal)
@@ -118,8 +123,6 @@ function MileageReport() {
 		setDaysOff(0)
 		setLongRun(data.goal_long_run)
 		setMostRecentRunToday(data.most_recent_run_today)
-		
-		setTotalDistanceByWeekPlot(`${process.env.REACT_APP_BACKEND_URL}/images/${data.total_distance_by_week_plot}`);
 		const newDaysLeft = data.days_left - (mostRecentRunToday ? 1 : 0)
 		setDaysLeft(newDaysLeft)
 		console.log(fetchedData)
@@ -428,17 +431,14 @@ function MileageReport() {
 				, well done! </h2>
 			</>
 		)}
-		{totalDistanceByWeekPlot ? <div>
-			<img
+		{totalDistanceByWeekPlot ? <><img
 				src={`${process.env.REACT_APP_BACKEND_URL}/images/${data.total_distance_by_week_plot}`}
-				alt='Total Distance by Week'
-			/>
-			<p className='img-text'>
-				It's crucial to gradually increase your mileage each
-				week by no more than 10% for injury prevention and safe endurance
-				building.
-			</p>
-		</div> : <div className='loader'></div>}
+				alt='Total Distance by Week' /><div className='loader'></div><p className='img-text'>
+					It's crucial to gradually increase your mileage each
+					week by no more than 10% for injury prevention and safe endurance
+					building.
+				</p></>
+		: <div className='loader'></div>}
 		{milesGoal === 0 ? <h3>
 						Set a <span className='highlight'>goal</span> below!
 
