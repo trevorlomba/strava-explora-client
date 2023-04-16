@@ -62,7 +62,7 @@ function RestReport() {
 		miles_left_minus_long_run_goal: 0,
 		days_left_minus_long_run: 0,
 	})
-	
+
 	 const [imageUrl, setImageUrl] = useState<string>('');
 
 	useEffect(() => {
@@ -108,8 +108,7 @@ function RestReport() {
 	return (
 		<div>
 			<h2>Rest Analysis</h2>
-			{imageUrl ? <img src={imageUrl} alt="Moving Time by Day"/> : <div className="loader"></div>}
-			{/* {<div className="loader"></div>} */}
+			{/* {imageUrl ? <img src={imageUrl} alt="Moving Time by Day"/> : <div className="loader"></div>} */}
 			{days_zero_last_3 >= 2 ? (
 				<p>
 					You've taken <span className='highlight'>{days_zero_last_3}</span>{' '}
