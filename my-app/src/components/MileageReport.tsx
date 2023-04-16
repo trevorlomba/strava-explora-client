@@ -100,6 +100,64 @@ function MileageReport() {
 	const [imageUrl, setImageUrl] = useState<string>('');
 
 
+	const [counter, setCounter] = React.useState(100);
+
+	const intervalRef = React.useRef<NodeJS.Timer | null>(null);
+		React.useEffect(() => {
+			return () => stopCounter(); // when App is unmounted we should stop counter
+		}, []);
+
+  const startCounterMilesGoalIncrement = () => {
+    if (intervalRef.current) return;
+    intervalRef.current = setInterval(() => {
+      setMilesGoal((prevMilesGoal) => prevMilesGoal + .1);
+    }, 50);
+  };
+  const startCounterMilesGoalDecrement = () => {
+    if (intervalRef.current) return;
+    intervalRef.current = setInterval(() => {
+		if(milesGoal > 0) { 
+      setMilesGoal((prevMilesGoal) => Math.max(0, prevMilesGoal - .1));}
+    }, 50);
+  };
+
+  const startCounterDaysOffIncrement = () => {
+    if (intervalRef.current) return;
+    intervalRef.current = setInterval(() => {
+		if (daysOff < daysLeft - 1){
+      setDaysOff((prevDaysOff) => Math.min(daysLeft, prevDaysOff + 1));}
+    }, 50);
+  };
+  const startCounterDaysOffDecrement = () => {
+    if (intervalRef.current) return;
+    intervalRef.current = setInterval(() => {
+		if(daysOff > 0) { 
+      setDaysOff((prevDaysOff) => Math.max(0, prevDaysOff - 1));}
+    }, 50);
+  };
+
+    const startCounterLongRunIncrement = () => {
+    if (intervalRef.current) return;
+    intervalRef.current = setInterval(() => {
+      setLongRun((prevLongRun) => prevLongRun + .1);
+    }, 50);
+  };
+  const startCounterLongRunDecrement = () => {
+    if (intervalRef.current) return;
+    intervalRef.current = setInterval(() => {
+		if(longRun > 0) { 
+      setLongRun((prevLongRun) => Math.max(0, prevLongRun - .1));}
+    }, 50);
+  };
+
+
+  const stopCounter = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+  
 	useEffect(() => {
 		// Fetch the data from the API endpoint
 		fetch(`${process.env.REACT_APP_BACKEND_URL}/api/mileage-report`)
@@ -164,6 +222,21 @@ function MileageReport() {
 		}
 	}
 
+	 const containerStyle = {
+    height: '300px',
+    width: '300px',
+  };
+
+  const elementStyle = {
+    margin: '5px',
+    height: `${counter}px`,
+    width: `${counter}px`,
+    background: 'radial-gradient(at 25% 25%, #2b86c5, #562b7c, #ff3cac)',
+    border: '2px solid black',
+    borderRadius: '50%',
+    boxShadow: '10px 5px 5px #BEBEBE',
+  };
+
 	
 	const restoreData = () => {
 		setMilesGoal(data.next_week_goal)
@@ -173,6 +246,49 @@ function MileageReport() {
 
 	const [longRunBinary, setLongRunBinary] = useState(0)
 	const [daysLeft, setDaysLeft] = useState(7)
+
+	const [dragging, setDragging] = useState(false);
+const [startX, setStartX] = useState(0);
+const [draggedState, setDraggedState] = useState<"milesGoal" | "daysOff" | "longRun">("milesGoal");
+
+const handleMouseDown = (
+  e: React.MouseEvent<HTMLSpanElement>,
+  state: "milesGoal" | "daysOff" | "longRun"
+) => {
+  e.preventDefault();
+  setDragging(true);
+  setStartX(e.clientX);
+  setDraggedState(state);
+};
+
+const handleMouseMove = (e: React.MouseEvent<HTMLSpanElement>) => {
+  if (dragging) {
+    e.preventDefault();
+    const deltaX = e.clientX - startX;
+    const deltaValue = deltaX * 0.01;
+
+    switch (draggedState) {
+      case "milesGoal":
+        setMilesGoal(milesGoal + deltaValue);
+        break;
+      case "daysOff":
+        setDaysOff(daysOff + Math.round(deltaValue));
+        break;
+      case "longRun":
+        setLongRun(longRun + deltaValue);
+        break;
+      default:
+        break;
+    }
+
+    setStartX(e.clientX);
+  }
+};
+
+const handleMouseUp = () => {
+  setDragging(false);
+};
+
 
 	useEffect(() => {
   // This will run whenever the milesGoal state changes
@@ -205,74 +321,136 @@ function MileageReport() {
 	} = data
 
 	
-	const daysOffElement = () => (
-		<><span>
-			<span className='highlight little-span grey-span'>
+	const formatMiles = (miles: number) => {
+  const formattedMiles = Math.round(miles * 100) / 100;
+  return Number(formattedMiles.toFixed(2));
+};
 
-				{Math.max(0, Math.round((milesGoal - week_prog) * 10)) / 10} miles in {daysLeft - daysOff}{' '}
-				day(s) with{' '}</span></span><span>
-				<span className='highlight little-span'>
-					<span
-						className='days-off-incr-button'
-						onClick={() => handleDaysOff(-1)}>
-						{'<'}
-					</span>{' '}<span className="draggables" 
-					// onMouseDown={(e: React.MouseEvent<HTMLSpanElement>) => handleMouseDown(e, "daysOff")} 
-					onDoubleClick={() => restoreData()}>
-						{daysOff} day(s) off{' '}</span>
-					<span className='days-off-incr-button' onClick={() => handleDaysOff(1)}>
-						{' '}
-						{">"}
-					</span>
-				</span>
-			</span></> 
-	)
-	const milesGoalElement = () => (
-		<span className='highlight little-span'>
-						<span
-							className='highlight little-span'
-							 
->	
-							<span
-								className='days-off-incr-button'
-								onClick={() => handleMilesGoal(-1)}>
-								{'<'}
-							</span>
-							<span className='draggables' 
-							// onMouseDown={(e: React.MouseEvent<HTMLSpanElement>) => handleMouseDown(e, "milesGoal")}
-  							onDoubleClick={() => restoreData()}>
-								{' '}{Math.round(milesGoal * 100) / 100} miles{' '}
-							</span> <span className="days-off-incr-button" onClick={() => handleMilesGoal(1)}>
-            {'>'}
-          </span>
-							</span>{' '}
-						</span>
-	)
-	const longRunElement = () => (
-		<span className='highlight little-span'>
-						<span
-							className='highlight little-span'
-							 
->	
-							<span
-								className='days-off-incr-button'
-								onClick={() => handleLongRun(-1)}>
-								{'<'}
-							</span>
-							<span className='draggables' 
-							// onMouseDown={(e: React.MouseEvent<HTMLSpanElement>) => handleMouseDown(e, "longRun")}
-  							onDoubleClick={() => restoreData()}>
-								{' '}{Math.round(longRun * 10) / 10} miles{' '}
-							</span> <span className="days-off-incr-button" onClick={() => handleLongRun(1)}>
-            {'>'}
-          </span>
-							</span>{' '}
-						</span>
-	)
-	
+const daysOffElement = () => (
+  <>
+    <span>
+      <span className="highlight little-span grey-span">
+        {Math.max(0, (milesGoal - week_prog)).toFixed(2)} miles in{" "}
+        {daysLeft - daysOff} day(s) with{" "}
+      </span>
+    </span>
+    <span>
+      <span className="highlight little-span">
+        <span
+          className="days-off-incr-button"
+          onMouseDown={startCounterDaysOffDecrement}
+          onMouseUp={stopCounter}
+          onMouseLeave={stopCounter}
+        >
+          {"<"}
+        </span>{" "}
+        <span
+    className="draggables"
+	onDoubleClick={() => restoreData()}
+    onMouseDown={(e) => handleMouseDown(e, "daysOff")}
+    onMouseMove={handleMouseMove}
+    onMouseUp={handleMouseUp}
+    onMouseLeave={handleMouseUp}
+  >
+    {daysOff} day(s) off{" "}
+  </span>
+        <span
+          className="days-off-incr-button"
+          onMouseDown={startCounterDaysOffIncrement}
+          onMouseUp={stopCounter}
+          onMouseLeave={stopCounter}
+        >
+          {" "}
+          {">"}
+        </span>
+      </span>
+    </span>
+  </>
+);
+
+const milesGoalElement = () => (
+  <span className="highlight little-span">
+    <span className="highlight little-span">
+      <span
+        className="days-off-incr-button"
+        onMouseDown={startCounterMilesGoalDecrement}
+        onMouseUp={stopCounter}
+        onMouseLeave={stopCounter}
+      >
+        {"<"}
+      </span>
+      <span
+    className="draggables"
+	onDoubleClick={() => restoreData()}
+    onMouseDown={(e) => handleMouseDown(e, "milesGoal")}
+    onMouseMove={handleMouseMove}
+    onMouseUp={handleMouseUp}
+    onMouseLeave={handleMouseUp}
+  >
+    {" "}
+    {milesGoal.toFixed(2)} miles{" "}
+  </span>{" "}
+      <span
+        className="days-off-incr-button"
+        onMouseDown={startCounterMilesGoalIncrement}
+        onMouseUp={stopCounter}
+        onMouseLeave={stopCounter}
+      >
+        {">"}
+      </span>
+    </span>{" "}
+  </span>
+);
+
+const longRunElement = () => (
+  <span className="highlight little-span">
+    <span className="highlight little-span">
+      <span
+        className="days-off-incr-button"
+        onMouseDown={startCounterLongRunDecrement}
+        onMouseUp={stopCounter}
+        onMouseLeave={stopCounter}
+      >
+        {"<"}
+      </span>
+     <span
+    className="draggables"
+    onMouseDown={(e) => handleMouseDown(e, "longRun")}
+    onMouseMove={handleMouseMove}
+    onMouseUp={handleMouseUp}
+    onMouseLeave={handleMouseUp}
+  >
+    {" "}
+    {longRun.toFixed(2)} miles{" "}
+  </span>{" "}
+      <span
+        className="days-off-incr-button"
+        onMouseDown={startCounterLongRunIncrement}
+        onMouseUp={stopCounter}
+        onMouseLeave={stopCounter}
+      >
+        {">"}
+      </span>
+    </span>{" "}
+  </span>
+);
 
 	return (
 	<div>
+		<div style={containerStyle}>
+      <div
+        onMouseDown={startCounterMilesGoalIncrement}
+        onMouseUp={stopCounter}
+        onMouseLeave={stopCounter}
+        style={elementStyle}
+      />
+      <div
+        onMouseDown={startCounterMilesGoalDecrement}
+        onMouseUp={stopCounter}
+        onMouseLeave={stopCounter}
+        style={elementStyle}
+      />
+    </div>
 		{
 		<div>{milesGoal < week_prog ? <>
 				<h2>
@@ -316,9 +494,10 @@ function MileageReport() {
 		)}
 
 		<div className = "mileage-report-text">
-			<div>Given your goal of {milesGoalElement()} this week</div>
+			<div>Given your goal of {milesGoalElement()} this week,</div>
 		<div>you'll have to cover {daysOffElement()}.</div>
-		<div>Consider including a long run of about {longRunElement()} if you haven't yet.</div>
+		<div>Plan a long run of about {longRunElement()} or so if you haven't yet.</div>
+
 		</div>
 		{/* <div>
 		
