@@ -109,6 +109,7 @@ function RestReport() {
 		<div>
 			<h2>Rest Analysis</h2>
 			{/* {imageUrl ? <img src={imageUrl} alt="Moving Time by Day"/> : <div className="loader"></div>} */}
+			<div>
 			{days_zero_last_3 >= 2 ? (
 				<p>
 					You've taken <span className='highlight'>{days_zero_last_3}</span>{' '}
@@ -131,6 +132,7 @@ function RestReport() {
 					your goals while minimizing the risk of injury.
 				</p>
 			)}
+			</div>
 		</div>
 	)
 }
