@@ -110,15 +110,15 @@ function MileageReport() {
   const startCounterMilesGoalIncrement = () => {
     if (intervalRef.current) return;
     intervalRef.current = setInterval(() => {
-      setMilesGoal((prevMilesGoal) => prevMilesGoal + .1);
-    }, 50);
+      setMilesGoal((prevMilesGoal) => prevMilesGoal + 1);
+    }, 100);
   };
   const startCounterMilesGoalDecrement = () => {
     if (intervalRef.current) return;
     intervalRef.current = setInterval(() => {
 		if(milesGoal > 0) { 
-      setMilesGoal((prevMilesGoal) => Math.max(0, prevMilesGoal - .1));}
-    }, 50);
+      setMilesGoal((prevMilesGoal) => Math.max(0, prevMilesGoal - 1));}
+    }, 100);
   };
 
   const startCounterDaysOffIncrement = () => {
@@ -126,28 +126,28 @@ function MileageReport() {
     intervalRef.current = setInterval(() => {
 		if (daysOff < daysLeft - 1){
       setDaysOff((prevDaysOff) => Math.min(daysLeft, prevDaysOff + 1));}
-    }, 50);
+    }, 100);
   };
   const startCounterDaysOffDecrement = () => {
     if (intervalRef.current) return;
     intervalRef.current = setInterval(() => {
 		if(daysOff > 0) { 
       setDaysOff((prevDaysOff) => Math.max(0, prevDaysOff - 1));}
-    }, 50);
+    }, 100);
   };
 
     const startCounterLongRunIncrement = () => {
     if (intervalRef.current) return;
     intervalRef.current = setInterval(() => {
-      setLongRun((prevLongRun) => prevLongRun + .1);
-    }, 50);
+      setLongRun((prevLongRun) => prevLongRun + 1);
+    }, 100);
   };
   const startCounterLongRunDecrement = () => {
     if (intervalRef.current) return;
     intervalRef.current = setInterval(() => {
 		if(longRun > 0) { 
-      setLongRun((prevLongRun) => Math.max(0, prevLongRun - .1));}
-    }, 50);
+      setLongRun((prevLongRun) => Math.max(0, prevLongRun - 1));}
+    }, 100);
   };
 
 
@@ -291,8 +291,10 @@ const handleMouseUp = () => {
 
 
 	useEffect(() => {
-  // This will run whenever the milesGoal state changes
-}, [milesGoal]);
+  if (milesGoal < longRun) {
+	setMilesGoal(longRun)
+  }
+}, [longRun]);
 
 
 
@@ -342,8 +344,10 @@ const daysOffElement = () => (
           onMouseUp={stopCounter}
           onMouseLeave={stopCounter}
         >
+       {" "}
           {"<"}
-        </span>{" "}
+		  {" "}
+        </span>
         <span
     className="draggables"
 	onDoubleClick={() => restoreData()}
@@ -352,7 +356,7 @@ const daysOffElement = () => (
     onMouseUp={handleMouseUp}
     onMouseLeave={handleMouseUp}
   >
-    {daysOff} day(s) off{" "}
+   {" "} {daysOff} day(s) off{" "}
   </span>
         <span
           className="days-off-incr-button"
@@ -362,6 +366,7 @@ const daysOffElement = () => (
         >
           {" "}
           {">"}
+          {" "}
         </span>
       </span>
     </span>
@@ -437,7 +442,7 @@ const longRunElement = () => (
 
 	return (
 	<div>
-		<div style={containerStyle}>
+		{/* <div style={containerStyle}>
       <div
         onMouseDown={startCounterMilesGoalIncrement}
         onMouseUp={stopCounter}
@@ -450,7 +455,7 @@ const longRunElement = () => (
         onMouseLeave={stopCounter}
         style={elementStyle}
       />
-    </div>
+    </div> */}
 		{
 		<div>{milesGoal < week_prog ? <>
 				<h2>
@@ -461,8 +466,9 @@ const longRunElement = () => (
 				Off to a fresh start!
 			</h2> : week_prog < milesGoal ? (
 			<h2>
-				Only <span className='highlight'>{(Math.round((milesGoal - week_prog) * 10) / 10)} miles </span>
-				to go!
+					You ran{' '}
+					<span className='highlight'>{week_prog.toFixed(1)} miles</span>{' '}
+				so far! 
 			</h2>
 		) : (
 			<>
@@ -496,7 +502,9 @@ const longRunElement = () => (
 		<div className = "mileage-report-text">
 			<div>Given your goal of {milesGoalElement()} this week,</div>
 		<div>you'll have to cover {daysOffElement()}.</div>
-		<div>Plan a long run of about {longRunElement()} or so if you haven't yet.</div>
+		<div><p>{' '}</p></div>
+		<div>Plan a long run of {longRunElement()} or so if you haven't yet.</div>
+		<div>That'd leave you with about <span className = "highlight little-span grey-span">{Math.max(0, milesGoal - week_prog - longRun).toFixed(2) } miles to go.</span></div>
 
 		</div>
 		{/* <div>
