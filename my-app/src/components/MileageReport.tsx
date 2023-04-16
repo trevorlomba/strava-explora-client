@@ -380,74 +380,7 @@ function MileageReport() {
 				, way to go!
 </p>
 )}</div> */}
-<div>
-		{longest_run_since_monday > longest_run_last_week ? (
-			<p>
-				Congratulations on improving your longest run to{' '}
-				<span className='highlight little-span grey-span'>
-					{longest_run_since_monday.toFixed(1)} miles
-				</span>
-				, which is longer than last week's longest run of{' '}
-				<span className='highlight little-span grey-span'>
-					{longest_run_last_week.toFixed(1)}
-				</span>{' '}
-				miles! You have{' '}
-				<span className='highlight little-span grey-span'>
-					{(milesGoal - week_prog).toFixed(1)}
-				</span>{' '}
-				miles left to go.
-			</p>
-		) : (
-			<div>
-				{longest_run_since_monday < 0.9 * longest_run_last_week ? (
-<div>
-{/* {
-  week_prog > milesGoal
-    ? ''
-    : longRun === 0
-    ? (
-        <p>
-          If you skip the long run {longRunElement()}, you'll have {daysLeft} day(s) to complete the remaining <span className="">{Math.max(0, milesGoal - week_prog).toFixed(1)} miles</span>: {daysOffElement()}.
-        </p>
-      )
-    : longRun > milesGoal - week_prog
-    ? (
-        Math.abs(longRun - (milesGoal - week_prog)) <= 0.1 * longRun
-        ? (
-            <p>
-              Your long run of {longRunElement()} will put you slightly over your goal, but it's within 10% of the target. {daysLeft > 1 ? <span>Go for it, and use the remaining <span className= "">{daysLeft - 1} day(s)</span> to recover.</span>: <span>Go for it, and make sure to recover after!</span>}
-            </p>
-          )
-        : (
-            <p>
-              Skip the long run of {longRunElement()} to avoid exceeding your weekly mileage. Instead, plan to use the next {daysLeft} day(s) to cover your remaining <span className=""> {Math.max(0, milesGoal - week_prog).toFixed(1)} miles: </span>{daysOffElement()}.
-            </p>
-          )
-      )
-    : (
-        <p>
-          Add a long run of {longRunElement()} if you're up to it. Then you'll have {daysLeft - 1} more day(s) for the last {(milesGoal - week_prog - longRun).toFixed(1)} miles: {daysOffElement()}.
-        </p>
-      )
-} */}
-</div>
-) : longest_run_since_monday >= 0.9 * longest_run_last_week && longest_run_since_monday <= 1.1 * longest_run_last_week ? (
-<div>
-<p>
-	{longest_run_last_week}
-	{longest_run_since_monday}
-Great job on your long run! You have {(milesGoal - week_prog).toFixed(1)} miles left, or {daysOffElement()}.
-</p>
-</div>
-) : (
-<div>
-<p>
-Good job on your long run but avoid overtraining. Keep future runs within 10% of your recent long run. Finish the week with {daysOffElement()}.
-</p>
-</div>
-)}
-			</div>
-		)}</div>
+
 	</div>
 	)
 }
