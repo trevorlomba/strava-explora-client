@@ -13,9 +13,9 @@ function App() {
         <h1>Progress Report for TJ</h1>
         <Router>
           <MileageReport />
-          <div className = "report-slider">
+          {/* <div className = "report-slider">
         <ReportSlider />
-        </div>
+        </div> */}
         </Router>
         <Footer />
       </div>
