@@ -9,7 +9,7 @@ import RestReport from './RestReport';
 const ReportSlider = () => {
   const navigate = useNavigate();
   const [reportsIndex, setReportsIndex] = useState(0);
-  const reportsArray = ['/strava-explora-client/rest', '/strava-explora-client/cadence'];
+  const reportsArray = ['/strava-explora-client/cadence', '/strava-explora-client/rest'];
 
   const handleBack = () => {
     const newReportsIndex = reportsIndex - 1;
