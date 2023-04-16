@@ -431,9 +431,9 @@ function MileageReport() {
 				, well done! </h2>
 			</>
 		)}
-		{totalDistanceByWeekPlot ? <><img
+		{imageUrl ? <><img
 				src={`${process.env.REACT_APP_BACKEND_URL}/images/${data.total_distance_by_week_plot}`}
-				alt='Total Distance by Week' /><div className='loader'></div><p className='img-text'>
+				alt='Total Distance by Week' /><p className='img-text'>
 					It's crucial to gradually increase your mileage each
 					week by no more than 10% for injury prevention and safe endurance
 					building.
