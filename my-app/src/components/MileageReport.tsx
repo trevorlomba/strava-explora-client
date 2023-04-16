@@ -482,7 +482,7 @@ const longRunElement = () => (
 				src={`${process.env.REACT_APP_BACKEND_URL}/images/${data.total_distance_by_week_plot}`}
 				alt='Total Distance by Week' /><p className='img-text'>
 					It's crucial to gradually increase your mileage each
-					week by no more than 10% for injury prevention and safe endurance
+					week by 10%-15% for injury prevention and safe endurance
 					building.
 				</p></>
 		: <div className='loader'></div>}
