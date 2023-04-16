@@ -330,7 +330,9 @@ const handleMouseUp = () => {
 
 const daysOffElement = () => (
   <>
-    <span>
+    <span
+	onDoubleClick={() => restoreData()}
+	>
       <span className="highlight little-span grey-span">
         {Math.max(0, (milesGoal - week_prog)).toFixed(2)} miles in{" "}
         {daysLeft - daysOff} day(s) with{" "}
@@ -350,7 +352,6 @@ const daysOffElement = () => (
         </span>
         <span
     className="draggables"
-	onDoubleClick={() => restoreData()}
     onMouseDown={(e) => handleMouseDown(e, "daysOff")}
     onMouseMove={handleMouseMove}
     onMouseUp={handleMouseUp}
@@ -374,7 +375,9 @@ const daysOffElement = () => (
 );
 
 const milesGoalElement = () => (
-  <span className="highlight little-span">
+  <span className="highlight little-span" 
+	onDoubleClick={() => restoreData()}
+  >
     <span className="highlight little-span">
       <span
         className="days-off-incr-button"
@@ -386,7 +389,7 @@ const milesGoalElement = () => (
       </span>
       <span
     className="draggables"
-	onDoubleClick={() => restoreData()}
+
     onMouseDown={(e) => handleMouseDown(e, "milesGoal")}
     onMouseMove={handleMouseMove}
     onMouseUp={handleMouseUp}
@@ -408,7 +411,9 @@ const milesGoalElement = () => (
 );
 
 const longRunElement = () => (
-  <span className="highlight little-span">
+  <span className="highlight little-span"
+	onDoubleClick={() => restoreData()}
+  >
     <span className="highlight little-span">
       <span
         className="days-off-incr-button"
