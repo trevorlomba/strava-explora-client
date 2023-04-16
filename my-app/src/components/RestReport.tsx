@@ -109,7 +109,7 @@ function RestReport() {
 		<div>
 			<h2>Rest Analysis</h2>
 			<div>
-			{/* {imageUrl ? <div><img src={imageUrl} alt="Moving Time by Day"/></div>: <div className="loader"></div>} */}
+			{imageUrl ? <div><img src={imageUrl} alt="Moving Time by Day"/></div>: <div className="loader"></div>}
 			</div>
 			<div>
 			{days_zero_last_3 >= 2 ? (

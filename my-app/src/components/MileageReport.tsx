@@ -316,9 +316,9 @@ function MileageReport() {
 		)}
 
 		<div className = "mileage-report-text">
-			<div>Given your goal of {milesGoalElement()} this week,</div>
-		<div>you'll have to cover {daysOffElement()}</div>
-		<div>including a long run of about {longRunElement()}.</div>
+			<div>Given your goal of {milesGoalElement()} this week</div>
+		<div>you'll have to cover {daysOffElement()}.</div>
+		<div>Consider including a long run of about {longRunElement()} if you haven't yet.</div>
 		</div>
 		{/* <div>
 		
