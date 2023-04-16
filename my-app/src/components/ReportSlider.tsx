@@ -27,10 +27,10 @@ const ReportSlider = () => {
 
   return (
         <div className="report-slider">
-      {/* <Routes>
+      <Routes>
         <Route index path="/strava-explora-client/rest" element={<RestReport />} />
         <Route path="/strava-explora-client/cadence" element={<CadenceReport />} />
-      </Routes> */}
+      </Routes>
       {reportsArray.length > 1 ? <button className="back-button" onClick={handleBack}>
         <FontAwesomeIcon icon={faAngleLeft} className="back-icon" />
         <span className="sr-only">Back</span>
