@@ -11,7 +11,7 @@ interface MileageData {
 	moving_time_by_day_plot: string
 	days_left: number
 	avg_miles_left: number
-	longest_run_last_week: number
+	longest_run_last_2_weeks: number
 	goal_long_run: number
 	longest_run_since_monday: number
 	long_run_improved: boolean
@@ -30,7 +30,7 @@ function RestReport() {
 		moving_time_by_day_plot: 'null',
 		// 'days_left': days_left,
 		// 'avg_miles_left': avg_miles_left.round(2),
-		// 'longest_run_last_week': longest_run_last_week.round(2),
+		// 'longest_run_last_2_weeks': longest_run_last_2_weeks.round(2),
 		// 'goal_long_run': goal_long_run.round(2),
 		// 'longest_run_since_monday': longest_run_since_monday.round(2),
 		// 'long_run_improved': long_run_improved,
@@ -38,7 +38,7 @@ function RestReport() {
 		// 'days_left_minus_long_run': days_left_minus_long_run
 		days_left: 0,
 		avg_miles_left: 0,
-		longest_run_last_week: 0,
+		longest_run_last_2_weeks: 0,
 		goal_long_run: 0,
 		longest_run_since_monday: 0,
 		long_run_improved: false,
@@ -55,7 +55,7 @@ function RestReport() {
 		moving_time_by_day_plot: 'null',
 		days_left: 0,
 		avg_miles_left: 0,
-		longest_run_last_week: 0,
+		longest_run_last_2_weeks: 0,
 		goal_long_run: 0,
 		longest_run_since_monday: 0,
 		long_run_improved: false,
@@ -95,7 +95,7 @@ function RestReport() {
 		moving_time_by_day_plot,
 		days_left,
 		avg_miles_left,
-		longest_run_last_week,
+		longest_run_last_2_weeks,
 		goal_long_run,
 		longest_run_since_monday,
 		long_run_improved,
