@@ -179,7 +179,7 @@ function MileageReport() {
 		setMilesGoal(data.next_week_goal)
 		setFetchedMilesGoal(data.next_week_goal)
 		setDaysOff(0)
-		setLongRun(data.goal_long_run)
+		setLongRun(data.longest_run_last_2_weeks * 1.1)
 		setMostRecentRunToday(data.most_recent_run_today)
 		const newDaysLeft = data.days_left - (mostRecentRunToday ? 1 : 0)
 		setDaysLeft(newDaysLeft)
@@ -272,7 +272,7 @@ const handleMouseMove = (e: React.MouseEvent<HTMLSpanElement>) => {
         setMilesGoal(milesGoal + deltaValue);
         break;
       case "daysOff":
-		const newDaysOff = daysOff + Math.round(deltaValue * 10)
+		const newDaysOff = daysOff + Math.round(deltaValue * 30)
 		if (newDaysOff >= 0 && newDaysOff < daysLeft) {
         setDaysOff(newDaysOff);}
         break;
@@ -511,11 +511,11 @@ const longRunElement = () => (
 		<div>you'll have to cover {daysOffElement()}</div>
 		<div>or <span className = "highlight little-span grey-span">{Math.max(0,((milesGoal - week_prog) / (daysLeft - daysOff))).toFixed(2)} miles per day</span>.</div>
 		<div><p>{' '}</p></div>
-		<div>Plan a long run of {longRunElement()} or so if you haven't yet.</div>
+		{!long_run_improved ? <div><div>Plan a long run of {longRunElement()} or so if you haven't yet.</div>
 		{milesGoal - week_prog - longRun > 0 ? <><div>That'd bring you about{' '} 
 			<span className="highlight little-span white-span">
 				{Math.max(0, milesGoal - week_prog - longRun).toFixed(2)} miles from your goal</span></div> {daysLeft - daysOff - 1 > 0 ? 
-				<div>or <span className="highlight little-span grey-span">{(Math.max((milesGoal - week_prog - longRun), 0) / Math.max(1, (daysLeft - daysOff - 1))).toFixed(2)} miles per day</span>.</div> : <div></div>}</> : <div>That'd bring you to your goal of <span className = "highlight little-span white-span">{milesGoal.toFixed(2)} miles</span>.</div>}
+				<div>or <span className="highlight little-span grey-span">{(Math.max((milesGoal - week_prog - longRun), 0) / Math.max(1, (daysLeft - daysOff - 1))).toFixed(2)} miles per day</span>.</div> : <div></div>}</> : <div>That'd bring you to your goal of <span className = "highlight little-span white-span">{milesGoal.toFixed(2)} miles</span>.</div>}</div>: <><div>Great job on getting a long run of <span className="highlight little-span white-span">{longest_run_since_monday.toFixed(2)} miles</span> in this week, </div><div>that's your longest effort in some time!</div></>}
 		
 
 		</div>
