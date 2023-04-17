@@ -272,7 +272,9 @@ const handleMouseMove = (e: React.MouseEvent<HTMLSpanElement>) => {
         setMilesGoal(milesGoal + deltaValue);
         break;
       case "daysOff":
-        setDaysOff(daysOff + Math.round(deltaValue * 10));
+		const newDaysOff = daysOff + Math.round(deltaValue * 10)
+		if (newDaysOff >= 0 && newDaysOff < daysLeft) {
+        setDaysOff(newDaysOff);}
         break;
       case "longRun":
         setLongRun(longRun + deltaValue);
@@ -331,9 +333,9 @@ const handleMouseUp = () => {
 const daysOffElement = () => (
   <>
     <span
-	onDoubleClick={() => restoreData()}
 	>
-      <span className="highlight little-span grey-span">
+      <span className="highlight little-span grey-span" 
+	  >
         {Math.max(0, (milesGoal - week_prog)).toFixed(2)} miles in{" "}
         {daysLeft - daysOff} day(s) with{" "}
       </span>
@@ -352,6 +354,7 @@ const daysOffElement = () => (
         </span>
         <span
     className="draggables"
+	onDoubleClick={() => restoreData()}
     onMouseDown={(e) => handleMouseDown(e, "daysOff")}
     onMouseMove={handleMouseMove}
     onMouseUp={handleMouseUp}
@@ -376,7 +379,6 @@ const daysOffElement = () => (
 
 const milesGoalElement = () => (
   <span className="highlight little-span" 
-	onDoubleClick={() => restoreData()}
   >
     <span className="highlight little-span">
       <span
@@ -389,7 +391,7 @@ const milesGoalElement = () => (
       </span>
       <span
     className="draggables"
-
+	onDoubleClick={() => restoreData()}
     onMouseDown={(e) => handleMouseDown(e, "milesGoal")}
     onMouseMove={handleMouseMove}
     onMouseUp={handleMouseUp}
@@ -412,7 +414,6 @@ const milesGoalElement = () => (
 
 const longRunElement = () => (
   <span className="highlight little-span"
-	onDoubleClick={() => restoreData()}
   >
     <span className="highlight little-span">
       <span
@@ -425,6 +426,7 @@ const longRunElement = () => (
       </span>
      <span
     className="draggables"
+	onDoubleClick={() => restoreData()}
     onMouseDown={(e) => handleMouseDown(e, "longRun")}
     onMouseMove={handleMouseMove}
     onMouseUp={handleMouseUp}
@@ -507,6 +509,7 @@ const longRunElement = () => (
 		<div className = "mileage-report-text">
 			<div>Given your goal of {milesGoalElement()} this week,</div>
 		<div>you'll have to cover {daysOffElement()}.</div>
+		<div>or <span className = "highlight little-span grey-span">{((milesGoal - week_prog) / (daysLeft - daysOff)).toFixed(2)} miles per day</span>.</div>
 		<div><p>{' '}</p></div>
 		<div>Plan a long run of {longRunElement()} or so if you haven't yet.</div>
 		<div>That'd leave you with about <span className = "highlight little-span grey-span">{Math.max(0, milesGoal - week_prog - longRun).toFixed(2) } miles to go.</span></div>
