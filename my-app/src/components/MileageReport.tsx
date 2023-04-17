@@ -272,7 +272,7 @@ const handleMouseMove = (e: React.MouseEvent<HTMLSpanElement>) => {
         setMilesGoal(milesGoal + deltaValue);
         break;
       case "daysOff":
-        setDaysOff(daysOff + Math.round(deltaValue));
+        setDaysOff(daysOff + Math.round(deltaValue * 10));
         break;
       case "longRun":
         setLongRun(longRun + deltaValue);
