@@ -1,7 +1,12 @@
 @media screen and (max-width: 768px) {
     .center {
         width: 80%;
-        padding: 20px;
+        // padding: 20px;
+        border-radius: 5px;
+    }
+    .center-parent {
+        width: 90%;
+        padding: 2%;
         border-radius: 5px;
     }
 
@@ -15,7 +20,7 @@
 @media screen and (max-width: 480px) {
     .center {
         width: 90%;
-        padding: 10px;
+        // padding: 10px;
         border-radius: 2px;
     }
 
