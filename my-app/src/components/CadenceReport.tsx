@@ -80,30 +80,31 @@ function CadenceReport() {
           <img
             src={averagePaceVsAverageCadencePlot}
             alt="Average Pace vs Cadence"
-            style={{ width: '100%' }} />
+            // style={{ width: '100%' }}
+             />
         </div>
-        <div style={{ flex: 1, marginLeft: '5px' }}>
+        {/* <div style={{ flex: 1, marginLeft: '5px' }}>
           <img
             src={averageHeartRateVsAverageCadencePlot}
             alt="Average Heartrate vs Average Cadence"
             style={{ width: '100%' }} />
-        </div>
+        </div> */}
 
       </div><p className="img-text">
-          We've discovered a significant relationship (r-squared = <span className='little-span highlight'>{data.pace_vs_cadence_r2}</span>) between cadence and speed (as pace), and no notable correlation between cadence and average heart rate.
+          We've discovered a significant relationship (r-squared = <span className='little-span highlight white-span'>{data.pace_vs_cadence_r2}</span>) between cadence and speed (as pace), and no notable correlation between cadence and average heart rate.
         </p></> : <div className="loader"></div>}
       
       {data.most_recent_cadence < 167 ? (
         <p>
-          Your last run's average cadence was <span className="highlight">{data.most_recent_cadence} steps/min</span>, falling below the optimal range of 170-180. Focus on raising your cadence to enhance your running form and avoid overstriding.
+          Your last run's average cadence was <span className="highlight little-span grey-span">{data.most_recent_cadence} steps/min</span>, falling below the optimal range of 170-180. Focus on raising your cadence to enhance your running form and avoid overstriding.
         </p>
       ) : data.most_recent_cadence >= 167 && data.most_recent_cadence <= 182 ? (
         <p>
-          Superb job on maintaining an average cadence of <span className="highlight">{data.most_recent_cadence} steps/min</span> on your last run! Keep up the excellent work and continue to concentrate on proper running form.
+          Superb job on maintaining an average cadence of <span className="highlight little-span grey-span">{data.most_recent_cadence} steps/min</span> on your last run! Keep up the excellent work and continue to concentrate on proper running form.
         </p>
       ) : (
         <p>
-          Your last run's average cadence was <span className="highlight">{data.most_recent_cadence} steps/min</span>, which is above the optimal range of 170-180. Be cautious not to overstride and concentrate on proper running form to prevent injury.
+          Your last run's average cadence was <span className="highlight little-span grey-span">{data.most_recent_cadence} steps/min</span>, which is above the optimal range of 170-180. Be cautious not to overstride and concentrate on proper running form to prevent injury.
         </p>
       )}
       {/* {random ? <h4 onClick={returnData}>(Reload Personal Data)</h4> : <h4 onClick={updateData}>(Randomize Data)</h4> } */}
