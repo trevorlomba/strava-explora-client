@@ -515,7 +515,7 @@ const longRunElement = () => (
 		{milesGoal - week_prog - longRun > 0 ? <><div>That'd bring you about{' '} 
 			<span className="highlight little-span white-span">
 				{Math.max(0, milesGoal - week_prog - longRun).toFixed(2)} miles from your goal{daysLeft - daysOff - 1 > 0 ? ',' : '.'}</span></div> {daysLeft - daysOff - 1 > 0 ? 
-				<div>or <span className="highlight little-span orange-span">{(Math.max((milesGoal - week_prog - longRun), 0) / Math.max(1, (daysLeft - daysOff - 1))).toFixed(2)} miles per day</span>.</div> : <div></div>}</> : <div>That'd bring you to your goal of <span className = "highlight little-span orange-span">{milesGoal.toFixed(2)} miles</span>.</div>}</div>: <><div>Great job on getting a long run of <span className="highlight little-span white-span">{longest_run_since_monday.toFixed(2)} miles</span> in this week, </div><div>that's your farthest effort in some time!</div></>}
+				<div>or <span className="highlight little-span orange-span">{(Math.max((milesGoal - week_prog - longRun), 0) / Math.max(1, (daysLeft - daysOff - 1))).toFixed(2)} miles per day</span>.</div> : <div></div>}</> : <div>That'd bring you to your goal of <span className = "highlight little-span white-span">{milesGoal.toFixed(2)} miles</span>.</div>}</div>: <><div>Great job on getting a long run of <span className="highlight little-span white-span">{longest_run_since_monday.toFixed(2)} miles</span> in this week, </div><div>that's your farthest effort in some time!</div></>}
 		
 
 		</div>
