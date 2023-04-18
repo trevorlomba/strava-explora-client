@@ -96,11 +96,11 @@ function CadenceReport() {
       
       {data.most_recent_cadence < 167 ? (
         <p>
-          Your last run's average cadence was <span className="highlight little-span grey-span">{data.most_recent_cadence} steps/min</span>, falling below the optimal range of 170-180. Focus on raising your cadence to enhance your running form and avoid overstriding.
+          Your last run's average cadence was <span className="highlight little-span white-span">{data.most_recent_cadence} steps/min</span>, falling below the optimal range of 170-180. Focus on raising your cadence to enhance your running form and avoid overstriding.
         </p>
       ) : data.most_recent_cadence >= 167 && data.most_recent_cadence <= 182 ? (
         <p>
-          Superb job on maintaining an average cadence of <span className="highlight little-span grey-span">{data.most_recent_cadence} steps/min</span> on your last run! Keep up the excellent work and continue to concentrate on proper running form.
+          Superb job on maintaining an average cadence of <span className="highlight little-span white-span">{data.most_recent_cadence} steps/min</span> on your last run! Keep up the excellent work and continue to concentrate on proper running form.
         </p>
       ) : (
         <p>
