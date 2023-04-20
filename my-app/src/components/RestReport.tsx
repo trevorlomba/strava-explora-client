@@ -107,7 +107,6 @@ function RestReport() {
 
 	return (
 		<div>
-			<h2>Rest Analysis</h2>
 			<div>
 			{imageUrl ? <div><img src={imageUrl} alt="Moving Time by Day"/></div>: <div className="loader"></div>}
 			</div>

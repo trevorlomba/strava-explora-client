@@ -145,22 +145,27 @@ img {
 
     .back-button,
     .next-button {
-        position: absolute;
-        top: 35px;
-        transform: translateY(-50%);
+        // position: absolute;
+        // top: 35px;
+        // transform: translateY(-50%);
         width: 24px;
         height: 24px;
         border-radius: 50%;
         background-color: #fff;
         border: none;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        display: flex;
+        // display: flex;
         justify-content: center;
-        align-items: center;
-        font-size: 24px;
+        // align-items: center;
+        // font-size: 24px;
         color: #383737;
         cursor: pointer;
         opacity: 0.5;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+        padding-top: .1rem;
+        // line-height: 1rem;
+
 
         &:hover {
             background-color: #73a8c8;
@@ -169,15 +174,19 @@ img {
 
     .back-button {
         left: 1vw;
+        line-height: 2rem;
     }
 
     .next-button {
         right: 1vh;
+        line-height: 2rem;
     }
 
     .back-icon,
     .next-icon {
-        font-size: 12px;
+        font-size: 15px;
+        padding-bottom: .3rem;
+        
     }
 
     .back-icon {

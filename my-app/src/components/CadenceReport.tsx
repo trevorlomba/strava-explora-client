@@ -74,7 +74,6 @@ function CadenceReport() {
 
   return (
     <div>
-      <h2>Cadence Analysis</h2>
       {averageHeartRateVsAverageCadencePlot && averagePaceVsAverageCadencePlot ? <><div style={{ display: 'flex', justifyContent: 'center' }}>
         <div style={{ flex: 1, marginRight: '5px' }}>
           <img

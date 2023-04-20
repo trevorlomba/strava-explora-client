@@ -44,6 +44,18 @@ const ReportSlider = () => {
 
 
   return (
+    <div>
+      {<h2>{reportsArrayNoNav.length > 1 ? <button className="back-button" onClick={handleBackNoNav}>
+        <FontAwesomeIcon icon={faAngleLeft} className="back-icon" />
+        <span className="sr-only">Back</span>
+      </button> : ''}
+      {/* show the value as a string with the first letter capitalized */}
+      {reportsArrayNoNav[reportsIndexNoNav][0].toUpperCase() + reportsArrayNoNav[reportsIndexNoNav].slice(1)}
+       {' '}Analysis{reportsArrayNoNav.length > 1 ? <button className="next-button" onClick={handleNextNoNav}> 
+        <FontAwesomeIcon icon={faAngleRight} className="next-icon" />
+        {/* <span className="sr-only">Next</span> */}
+      </button>: ''}</h2>}
+      
         <div className="report-slider">
       {/* <Routes>
         <Route path="/strava-explora-client/cadence" element={<CadenceReport />} />
@@ -51,15 +63,10 @@ const ReportSlider = () => {
       </Routes> */}
       {reportsArrayNoNav[reportsIndexNoNav] === 'rest' ? <RestReport /> : <div></div>}
       {reportsArrayNoNav[reportsIndexNoNav] === 'cadence' ? <CadenceReport /> : <div></div>}
-      {reportsArrayNoNav.length > 1 ? <button className="back-button" onClick={handleBackNoNav}>
-        <FontAwesomeIcon icon={faAngleLeft} className="back-icon" />
-        <span className="sr-only">Back</span>
-      </button> : ''}
-      {reportsArrayNoNav.length > 1 ? <button className="next-button" onClick={handleNextNoNav}> 
-        <FontAwesomeIcon icon={faAngleRight} className="next-icon" />
-        <span className="sr-only">Next</span>
-      </button>: ''}
+      
+      
     </div>
+      </div>
   );
 };
 
