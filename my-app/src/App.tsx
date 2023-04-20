@@ -7,12 +7,31 @@ import './styles/App.scss';
 
 function App() {
   // Function to prevent touch scrolling
-function preventTouchScroll(e: TouchEvent) {
-  e.preventDefault();
+// Declare the variable to store the initial clientX value
+let initialClientX: number | null = null;
+
+function touchStartHandler(e: TouchEvent): void {
+  initialClientX = e.touches[0].clientX;
 }
 
-// Add event listener to disable touch scrolling
-document.addEventListener('touchmove', preventTouchScroll, { passive: false });
+function touchMoveHandler(e: TouchEvent): void {
+  if (initialClientX === null) {
+    return;
+  }
+
+  // You can set a threshold value to determine when to prevent scrolling
+  const threshold = 5;
+  const currentClientX = e.touches[0].clientX;
+  const diffX = Math.abs(initialClientX - currentClientX);
+
+  if (diffX > threshold) {
+    e.preventDefault();
+  }
+}
+
+// Add the event listeners
+document.addEventListener('touchstart', touchStartHandler, { passive: false });
+document.addEventListener('touchmove', touchMoveHandler, { passive: false });
 
   return (
     <div className="App">
