@@ -330,6 +330,47 @@ const handleMouseUp = () => {
   return Number(formattedMiles.toFixed(2));
 };
 
+const handleTouchStart = (
+  e: React.TouchEvent<HTMLSpanElement>,
+  state: "milesGoal" | "daysOff" | "longRun"
+) => {
+  e.preventDefault();
+  setDragging(true);
+  setStartX(e.touches[0].clientX);
+  setDraggedState(state);
+};
+
+const handleTouchMove = (e: React.TouchEvent<HTMLSpanElement>) => {
+  if (dragging) {
+    e.preventDefault();
+    const deltaX = e.touches[0].clientX - startX;
+    const deltaValue = deltaX * 0.01;
+
+    switch (draggedState) {
+      case "milesGoal":
+        setMilesGoal(milesGoal + deltaValue);
+        break;
+      case "daysOff":
+        const newDaysOff = daysOff + Math.round(deltaValue * 30);
+        if (newDaysOff >= 0 && newDaysOff < daysLeft) {
+          setDaysOff(newDaysOff);
+        }
+        break;
+      case "longRun":
+        setLongRun(longRun + deltaValue);
+        break;
+      default:
+        break;
+    }
+
+    setStartX(e.touches[0].clientX);
+  }
+};
+
+const handleTouchEnd = () => {
+  setDragging(false);
+};
+
 const daysOffElement = () => (
   <>
     <span
@@ -347,6 +388,9 @@ const daysOffElement = () => (
           onMouseDown={startCounterDaysOffDecrement}
           onMouseUp={stopCounter}
           onMouseLeave={stopCounter}
+		  onTouchStart={startCounterDaysOffDecrement}
+    onTouchEnd={stopCounter}
+    onTouchCancel={stopCounter}
         >
        {" "}
           {"<"}
@@ -359,6 +403,10 @@ const daysOffElement = () => (
     onMouseMove={handleMouseMove}
     onMouseUp={handleMouseUp}
     onMouseLeave={handleMouseUp}
+	onTouchStart={(e) => handleTouchStart(e, "daysOff")}
+  onTouchMove={handleTouchMove}
+  onTouchEnd={handleTouchEnd}
+  onTouchCancel={handleTouchEnd}
   >
    {" "} {daysOff} day(s) off{" "}
   </span>
@@ -367,6 +415,9 @@ const daysOffElement = () => (
           onMouseDown={startCounterDaysOffIncrement}
           onMouseUp={stopCounter}
           onMouseLeave={stopCounter}
+		  onTouchStart={startCounterDaysOffIncrement}
+    onTouchEnd={stopCounter}
+    onTouchCancel={stopCounter}
         >
           {" "}
           {">"}
@@ -386,6 +437,9 @@ const milesGoalElement = () => (
         onMouseDown={startCounterMilesGoalDecrement}
         onMouseUp={stopCounter}
         onMouseLeave={stopCounter}
+		onTouchStart={startCounterMilesGoalDecrement}
+    onTouchEnd={stopCounter}
+    onTouchCancel={stopCounter}
       >
         {"<"}
       </span>
@@ -396,6 +450,10 @@ const milesGoalElement = () => (
     onMouseMove={handleMouseMove}
     onMouseUp={handleMouseUp}
     onMouseLeave={handleMouseUp}
+	onTouchStart={(e) => handleTouchStart(e, "milesGoal")}
+  onTouchMove={handleTouchMove}
+  onTouchEnd={handleTouchEnd}
+  onTouchCancel={handleTouchEnd}
   >
     {" "}
     {milesGoal.toFixed(2)} miles{" "}
@@ -405,6 +463,9 @@ const milesGoalElement = () => (
         onMouseDown={startCounterMilesGoalIncrement}
         onMouseUp={stopCounter}
         onMouseLeave={stopCounter}
+		 onTouchStart={startCounterMilesGoalIncrement}
+    onTouchEnd={stopCounter}
+    onTouchCancel={stopCounter}
       >
         {">"}
       </span>
@@ -421,6 +482,9 @@ const longRunElement = () => (
         onMouseDown={startCounterLongRunDecrement}
         onMouseUp={stopCounter}
         onMouseLeave={stopCounter}
+		onTouchStart={startCounterLongRunDecrement}
+    onTouchEnd={stopCounter}
+    onTouchCancel={stopCounter}
       >
         {"<"}
       </span>
@@ -431,6 +495,10 @@ const longRunElement = () => (
     onMouseMove={handleMouseMove}
     onMouseUp={handleMouseUp}
     onMouseLeave={handleMouseUp}
+	onTouchStart={(e) => handleTouchStart(e, "longRun")}
+  onTouchMove={handleTouchMove}
+  onTouchEnd={handleTouchEnd}
+  onTouchCancel={handleTouchEnd}
   >
     {" "}
     {longRun.toFixed(2)} miles{" "}
@@ -440,6 +508,9 @@ const longRunElement = () => (
         onMouseDown={startCounterLongRunIncrement}
         onMouseUp={stopCounter}
         onMouseLeave={stopCounter}
+		onTouchStart={startCounterLongRunIncrement}
+    onTouchEnd={stopCounter}
+    onTouchCancel={stopCounter}
       >
         {">"}
       </span>

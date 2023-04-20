@@ -6,6 +6,14 @@ import Footer from './components/Footer';
 import './styles/App.scss';
 
 function App() {
+  // Function to prevent touch scrolling
+function preventTouchScroll(e: TouchEvent) {
+  e.preventDefault();
+}
+
+// Add event listener to disable touch scrolling
+document.addEventListener('touchmove', preventTouchScroll, { passive: false });
+
   return (
     <div className="App">
       <div className = "center-parent">
