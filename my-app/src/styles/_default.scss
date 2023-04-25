@@ -20,7 +20,7 @@ h1 {
 }
 
 h2 {
-    font-size: 32px;
+    font-size: 25px;
     font-weight: bold;
     margin-top: 1rem;
 }
@@ -148,44 +148,46 @@ img {
         // position: absolute;
         // top: 35px;
         // transform: translateY(-50%);
-        width: 24px;
-        height: 24px;
+        // width: 18px;
+        // height: 18px;
         border-radius: 50%;
-        background-color: #fff;
+        // background-color: #fff;
         border: none;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         // display: flex;
         justify-content: center;
         // align-items: center;
         // font-size: 24px;
-        color: #383737;
+        color: #ffffff;
+        // background-color: white;
         cursor: pointer;
         opacity: 0.5;
-        margin-left: 1.5rem;
-        margin-right: 1.5rem;
+        // margin-left: 1.5rem;
+        // margin-right: 1.5rem;
+        margin: .5rem;
         padding-top: .1rem;
         // line-height: 1rem;
 
 
         &:hover {
-            background-color: #73a8c8;
+            // background-color: #73a8c8;
         }
     }
 
     .back-button {
         left: 1vw;
-        line-height: 2rem;
+        // line-height: 2rem;
     }
 
     .next-button {
         right: 1vh;
-        line-height: 2rem;
+        // line-height: 2rem;
     }
 
     .back-icon,
     .next-icon {
-        font-size: 15px;
-        padding-bottom: .3rem;
+        // font-size: 15px;
+        // padding-bottom: 13px;
         
     }
 
