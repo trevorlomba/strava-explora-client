@@ -37,7 +37,7 @@ document.addEventListener('touchmove', touchMoveHandler, { passive: false });
     <div className="App">
       <div className = "center-parent">
       <div className="center">
-        <h1>Progress Report for TJ</h1>
+        <h1><span className="orange no-break">Mileage Report</span><span className="orange"> for TJ</span></h1>
         <Router>
           <MileageReport />
           <div className = "report-slider">

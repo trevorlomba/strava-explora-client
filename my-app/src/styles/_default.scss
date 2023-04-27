@@ -1,6 +1,6 @@
 body {
     background-color: #0078c236;
-    color: #fffffff4;
+    color: #ffffffea;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     
@@ -45,7 +45,7 @@ p {
 .highlight {
     font-size: 120%;
     font-weight: bold;
-    color: #73a8c8;
+    color: #95b5c9;
     white-space: nowrap;
 }
 
@@ -61,10 +61,10 @@ p {
 }
 
 .white-span {   
-    color: #ffffff;
+    color: #ffffffd4;
 }
 .orange-span {   
-    color: #ef8c5e;
+    color: #dd906e;
 }
 
 .days-off-incr-button {
@@ -88,7 +88,7 @@ p {
     margin: auto;
     padding: 3vh;
     padding-bottom: 0;
-    border: 2px solid #fc4d02;
+    border: 2px solid #e0612a;
     background-color: #282c34;
 
 }
@@ -221,6 +221,30 @@ img {
 .report-slider {
     margin-top: 1rem;
 
+}
+
+.h2-highlight {
+    color: #e6652e;
+    font-size: 28px;
+}
+
+.h3-highlight {
+    color: #e6652e;
+    font-size: 22px;
+}
+
+.orange {
+    color: #ffffffe1;
+    font-weight: light;
+}
+
+.header-pointers {
+    font-style: italic;
+    font-weight: 100;
+}
+
+.no-break {
+    white-space: normal;
 }
 
 @keyframes spin {
