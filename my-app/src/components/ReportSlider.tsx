@@ -26,7 +26,7 @@ const ReportSlider = () => {
 
   return (
     <div {...swipeHandlers}>
-      <h2>
+      <h2 className="header-draggables">
         {reportsArray.length > 1 && (
           <span className="back-button" onClick={handleBack}>
             <FontAwesomeIcon icon={faAngleLeft} className="back-icon" />

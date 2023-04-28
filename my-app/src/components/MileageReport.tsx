@@ -427,7 +427,7 @@ const handleTouchMove = (e: React.TouchEvent<HTMLSpanElement>) => {
         break;
       case "daysLeft":
         const newDaysLeft = daysLeft + Math.round(deltaValue * 30);
-        if (newDaysLeft >= 0 && newDaysLeft < daysLeft) {
+        if (newDaysLeft >= 0 && newDaysLeft < 8) {
           setDaysLeft(newDaysLeft);
         }
         break;
@@ -435,6 +435,9 @@ const handleTouchMove = (e: React.TouchEvent<HTMLSpanElement>) => {
         setLongRun(longRun + deltaValue);
         break;
       default:
+        break;
+      case "weekProg":
+        setWeekProg(weekProg + deltaValue);
         break;
     }
 
