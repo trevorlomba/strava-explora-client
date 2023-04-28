@@ -420,13 +420,13 @@ const handleTouchMove = (e: React.TouchEvent<HTMLSpanElement>) => {
         setMilesGoal(milesGoal + deltaValue);
         break;
       case "daysOff":
-        const newDaysOff = daysOff + Math.round(deltaValue * 30);
+        const newDaysOff = daysOff + Math.round(deltaValue * 10);
         if (newDaysOff >= 0 && newDaysOff < daysLeft) {
           setDaysOff(newDaysOff);
         }
         break;
       case "daysLeft":
-        const newDaysLeft = daysLeft + Math.round(deltaValue * 30);
+        const newDaysLeft = daysLeft + Math.round(deltaValue * 10);
         if (newDaysLeft > 0 && newDaysLeft < 8) {
           setDaysLeft(newDaysLeft);
         }
