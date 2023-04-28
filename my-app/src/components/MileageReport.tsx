@@ -741,7 +741,7 @@ const longRunElement = () => (
 		<span>you'll have to cover {daysOffElement()} {' '}</span>
 		<span>or <span className = "highlight little-span orange-span">{Math.max(0,((milesGoal - weekProg) / (daysLeft - daysOff))).toFixed(2)} miles per run</span>.</span>
 		<div><p>{' '}</p></div>
-		{long_run_improved ? <div><span>Plan a long run of {longRunElement()} or so if you haven't yet. </span>
+		{!long_run_improved ? <div><span>Plan a long run of {longRunElement()} or so if you haven't yet. </span>
 		{milesGoal - weekProg - longRun > 0 ? <><span>That'd bring you about{' '} 
 			<span className="highlight little-span white-span">
 				{Math.max(0, milesGoal - weekProg - longRun).toFixed(2)} miles from your goal{daysLeft - daysOff - 1 > 0 ? ',' : '.'}</span></span> {daysLeft - daysOff - 1 > 0 ? 
