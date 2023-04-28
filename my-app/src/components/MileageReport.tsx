@@ -493,8 +493,8 @@ const daysOffElement = () => (
 	>
       <span className="highlight little-span white-span" 
 	  >
-        {Math.max(0, (milesGoal - weekProg)).toFixed(2)} miles in{" "}
-        {daysLeft - daysOff} day(s)  </span>with{" "}
+        {Math.max(0, (milesGoal - weekProg)).toFixed(2)} miles over{" "}
+        {daysLeft - daysOff} run(s)  </span>with{" "}
      
     </span>
     <span>
@@ -727,13 +727,13 @@ const longRunElement = () => (
 		<div className = "mileage-report-text">
 			<span>Given your goal of {milesGoalElement()} this week, </span>
 		<span>you'll have to cover {daysOffElement()} {' '}</span>
-		<span>or <span className = "highlight little-span orange-span">{Math.max(0,((milesGoal - weekProg) / (daysLeft - daysOff))).toFixed(2)} miles per day</span>.</span>
+		<span>or <span className = "highlight little-span orange-span">{Math.max(0,((milesGoal - weekProg) / (daysLeft - daysOff))).toFixed(2)} miles per run</span>.</span>
 		<div><p>{' '}</p></div>
 		{long_run_improved ? <div><span>Plan a long run of {longRunElement()} or so if you haven't yet. </span>
 		{milesGoal - weekProg - longRun > 0 ? <><span>That'd bring you about{' '} 
 			<span className="highlight little-span white-span">
 				{Math.max(0, milesGoal - weekProg - longRun).toFixed(2)} miles from your goal{daysLeft - daysOff - 1 > 0 ? ',' : '.'}</span></span> {daysLeft - daysOff - 1 > 0 ? 
-				<span>or <span className="highlight little-span orange-span">{(Math.max((milesGoal - weekProg - longRun), 0) / Math.max(1, (daysLeft - daysOff - 1))).toFixed(2)} miles per day</span>.</span> : <div></div>}</> : <span>That'd bring you to your goal of <span className = "highlight little-span white-span">{milesGoal.toFixed(2)} miles</span>.</span>}</div>: <><span>Great job on getting a long run of <span className="highlight little-span white-span">{longest_run_since_monday.toFixed(2)} miles</span> in this week! </span><span>If you hit {longRunElement()} on your next run,</span><span>you'll be left with <span className="highlight little-span orange-span">{(Math.max((milesGoal - weekProg - longRun), 0) / Math.max(1, (daysLeft - daysOff - 1))).toFixed(2)} miles per day</span> for the rest.</span></>}
+				<span>or <span className="highlight little-span orange-span">{(Math.max((milesGoal - weekProg - longRun), 0) / Math.max(1, (daysLeft - daysOff - 1))).toFixed(2)} miles per run</span>.</span> : <div></div>}</> : <span>That'd bring you to your goal of <span className = "highlight little-span white-span">{milesGoal.toFixed(2)} miles</span>.</span>}</div>: <><span>Great job on getting a long run of <span className="highlight little-span white-span">{longest_run_since_monday.toFixed(2)} miles</span> in this week! </span><span>If you hit {longRunElement()} on your next run,</span><span>you'll be left with <span className="highlight little-span orange-span">{(Math.max((milesGoal - weekProg - longRun), 0) / Math.max(1, (daysLeft - daysOff - 1))).toFixed(2)} miles per run</span> for the rest.</span></>}
 		
 
 		</div>
