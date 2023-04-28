@@ -365,7 +365,13 @@ useEffect(() => {
   }
   if (daysLeft <= daysOff) {
 	setDaysOff(Math.max((daysLeft - 1), 0))}
-}, [longRun, daysLeft, daysOff, milesGoal]);
+}, [longRun, daysLeft, daysOff]);
+
+useEffect(() => {
+  if (milesGoal < longRun) {
+	setLongRun(milesGoal)
+  }
+}, [milesGoal]);
 
 
 
@@ -432,13 +438,16 @@ const handleTouchMove = (e: React.TouchEvent<HTMLSpanElement>) => {
         }
         break;
       case "longRun":
-        setLongRun(longRun + deltaValue);
+		  const newLongRun = longRun + deltaValue
+		  if(newLongRun >= 0){
+        setLongRun(longRun + deltaValue);}
         break;
       default:
         break;
       case "weekProg":
-        setWeekProg(weekProg + deltaValue);
-        break;
+          const newWeekProg = weekProg + deltaValue
+		  if(newWeekProg >= 0){
+        setWeekProg(weekProg + deltaValue);}
     }
 
     setStartX(e.touches[0].clientX);
