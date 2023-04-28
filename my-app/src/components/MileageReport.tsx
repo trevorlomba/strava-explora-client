@@ -162,7 +162,7 @@ function MileageReport() {
     if (intervalRef.current) return;
     intervalRef.current = setInterval(() => {
 		if(daysLeft > 0) { 
-      setDaysLeft((prevDaysLeft) => Math.max(0, prevDaysLeft - 1));}
+      setDaysLeft((prevDaysLeft) => Math.max(1, prevDaysLeft - 1));}
     }, 100);
   };
 
@@ -239,7 +239,7 @@ function MileageReport() {
 
 
 		const newDaysLeft = Math.min(daysLeft + incr, 7)
-		if (newDaysLeft >= 0) {
+		if (newDaysLeft > 0) {
 			setDaysLeft(newDaysLeft)
 		}
 	}
@@ -337,7 +337,7 @@ const handleMouseMove = (e: React.MouseEvent<HTMLSpanElement>) => {
         break;
       case "daysLeft":
 		const newDaysLeft = daysLeft + Math.round(deltaValue * 30)
-		if (newDaysLeft >= 0 && newDaysLeft < 8) {
+		if (newDaysLeft > 0 && newDaysLeft < 8) {
         setDaysLeft(newDaysLeft);}
         break;
       case "longRun":
@@ -427,7 +427,7 @@ const handleTouchMove = (e: React.TouchEvent<HTMLSpanElement>) => {
         break;
       case "daysLeft":
         const newDaysLeft = daysLeft + Math.round(deltaValue * 30);
-        if (newDaysLeft >= 0 && newDaysLeft < 8) {
+        if (newDaysLeft > 0 && newDaysLeft < 8) {
           setDaysLeft(newDaysLeft);
         }
         break;
