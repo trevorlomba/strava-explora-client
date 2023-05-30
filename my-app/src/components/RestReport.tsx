@@ -128,21 +128,19 @@ function RestReport() {
 					</p>
 				) : days_zero_last_14 > 5 ? (
 					<p>
-						You've taken{' '}{days_zero_last_14} rest day(s){' '}in the last 14. While rest is essential, remember to stay focused on your goals and maintain consistent running habits!
+						You've taken {days_zero_last_14} rest day(s) in the last 14. While
+						rest is essential, remember to stay focused on your goals and
+						maintain consistent running habits!
 					</p>
 				) : days_zero_last_14 < 2 ? (
 					<p>
-						Nice work on providing your body with adequate rest. You've taken{' '}
+						You've taken{' '}
 						<span className='highlight little-span white-span'>
 							{days_zero_last_14} rest day(s){' '}
-						</span>
-						in the last 14. It's important to balance training and rest to avoid
-						overtraining and injuries. Keep listening to your body and adjusting
-						your schedule as needed.
-					</p>
-				) : days_zero_last_14 < 2 ? (
-					<p>
-						You've taken{' '}{days_zero_last_14} rest day(s){' '}in the last 14. It's important to balance training and rest to avoid overtraining and injuries. Keep listening to your body and adjusting your schedule as needed.
+						</span>{'gi '}
+						rest day(s) in the last 14. It's important to balance training and
+						rest to avoid overtraining and injuries. Keep listening to your body
+						and adjusting your schedule as needed.
 					</p>
 				) : (
 					<p>
