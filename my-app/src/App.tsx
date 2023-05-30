@@ -41,8 +41,8 @@ document.addEventListener('touchmove', touchMoveHandler, { passive: false });
         <Router>
           <MileageReport />
           <div className = "report-slider">
-        <ReportSlider />
-        </div>
+            <ReportSlider />
+          </div>
         </Router>
         <Footer />
       </div>

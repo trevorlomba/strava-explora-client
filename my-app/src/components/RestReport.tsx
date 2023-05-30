@@ -108,31 +108,52 @@ function RestReport() {
 	return (
 		<div>
 			<div>
-			{imageUrl ? <div><img src={imageUrl} alt="Moving Time by Day"/></div>: <div className="loader"></div>}
+				{imageUrl ? (
+					<div>
+						<img src={imageUrl} alt='Moving Time by Day' />
+					</div>
+				) : (
+					<div className='loader'></div>
+				)}
 			</div>
 			<div>
-			{days_zero_last_3 >= 2 ? (
-				<p>
-					You've taken <span className='highlight little-span white-span'>{days_zero_last_3} {' '}
-					rest day(s) </span>in the last 3 days. While rest is essential, remember to
-					stay focused on your goals and maintain consistent running habits.
-				</p>
-			) : days_zero_last_14 < 2 ? (
-				<p>
-					Nice work on providing your body with adequate rest. You've taken{' '}
-					<span className='highlight little-span white-span'>{days_zero_last_14} rest day(s) </span>in
-					the last 14. It's important to balance training and rest to avoid
-					overtraining and injuries. Keep listening to your body and adjusting
-					your schedule as needed.
-				</p>
-			) : (
-				<p>
-					Good balance between training and rest days! You've taken{' '}
-					<span className='highlightlittle-span white-span'>{days_zero_last_14} rest day(s)</span>  in
-					the last 14. Maintaining this consistency will help you achieve
-					your goals while minimizing the risk of injury.
-				</p>
-			)}
+				{days_zero_last_3 >= 2 ? (
+					<p>
+						You've taken{' '}
+						<span className='highlight little-span white-span'>
+							{days_zero_last_3} rest day(s){' '}
+						</span>
+						in the last 3 days. While rest is essential, remember to stay
+						focused on your goals and maintain consistent running habits.
+					</p>
+				) : days_zero_last_14 > 5 ? (
+					<p>
+						You've taken{' '}{days_zero_last_14} rest day(s){' '}in the last 14. While rest is essential, remember to stay focused on your goals and maintain consistent running habits!
+					</p>
+				) : days_zero_last_14 < 2 ? (
+					<p>
+						Nice work on providing your body with adequate rest. You've taken{' '}
+						<span className='highlight little-span white-span'>
+							{days_zero_last_14} rest day(s){' '}
+						</span>
+						in the last 14. It's important to balance training and rest to avoid
+						overtraining and injuries. Keep listening to your body and adjusting
+						your schedule as needed.
+					</p>
+				) : days_zero_last_14 < 2 ? (
+					<p>
+						You've taken{' '}{days_zero_last_14} rest day(s){' '}in the last 14. It's important to balance training and rest to avoid overtraining and injuries. Keep listening to your body and adjusting your schedule as needed.
+					</p>
+				) : (
+					<p>
+						Good balance between training and rest days! You've taken{' '}
+						<span className='highlightlittle-span white-span'>
+							{days_zero_last_14} rest day(s)
+						</span>{' '}
+						in the last 14. Maintaining this consistency will help you achieve
+						your goals while minimizing the risk of injury.
+					</p>
+				)}
 			</div>
 		</div>
 	)
