@@ -137,7 +137,7 @@ function RestReport() {
 						You've taken{' '}
 						<span className='highlight little-span white-span'>
 							{days_zero_last_14} rest day(s){' '}
-						</span>{'gi '}
+						</span>{' '}
 						rest day(s) in the last 14. It's important to balance training and
 						rest to avoid overtraining and injuries. Keep listening to your body
 						and adjusting your schedule as needed.
